@@ -1,0 +1,39 @@
+{
+  "name": "empreendix",
+  "version": "1.0.0",
+  "description": "Projeto pra Estudos",
+  "repository": {
+    "type": "git",
+    "url": "https://joaoabo@dev.azure.com/joaoabo/Empreendix/_git/Empreendix"
+  },
+  "license": "ISC",
+  "author": "João Antonio b de Oliveira",
+  "type": "commonjs",
+  "main": "ts-node src/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --import=tsx --watch --env-file=.env src/server.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mailtrap": "^4.0.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.13.13",
+    "@types/uuid": "^10.0.0",
+    "prisma": "^6.5.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

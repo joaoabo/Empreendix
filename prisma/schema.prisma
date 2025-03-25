@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  Id_Usu    Int    @id @default(autoincrement())
+  Nome_usu  String
+  Email_usu String @unique
+
+  Otps Otp[]
+}
+
+model Otp {
+  Id_otp              String   @id
+  Codigo_otp          String
+  UsuarioId           Int
+  DataExpiracaoCodigo DateTime
+  StatusCodigo        Boolean  @default(false)
+
+  Usuario Usuario @relation(fields: [UsuarioId], references: [Id_Usu])
+}
