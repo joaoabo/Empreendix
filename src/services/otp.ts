@@ -21,3 +21,27 @@ export const gerarOTP = async (UsuarioId: number) => {
     })
     return otp;
 }
+
+export const validarOTP = async (Id_otp: string, Codigo_otp: string) => {
+    const otp = await db.otp.findFirst({
+        select: {UsuarioId: true},
+        where: {
+            Id_otp,
+            Codigo_otp,
+            DataExpiracaoCodigo: {
+                gt: new Date()
+            },
+            StatusCodigo: false
+        }
+    });
+
+    if(otp && otp.UsuarioId){
+        await db.otp.update({
+            where: { Id_otp },
+            data: { StatusCodigo: true }
+        });
+        return otp.UsuarioId;
+    }
+
+    return false;
+}

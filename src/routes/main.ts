@@ -6,3 +6,6 @@ export const mainRouter = Router();
 
 mainRouter.get('/ping', pingController.ping);
 mainRouter.post('/usuario/signin', usuarioController.signin);
+mainRouter.post('/usuario/signup', usuarioController.signup);
+
+mainRouter.post('/usuario/usarotp', usuarioController.usarOPT);

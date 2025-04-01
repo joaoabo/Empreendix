@@ -6,3 +6,13 @@ export const pegaUsuarioByEmail = async (Email_usu: string) => {
     })
     return usuario;
 }
+
+export const cadastrarUsuario = async (Nome_usu: string, Email_usu: string) => {
+    const usuario = await db.usuario.create({
+        data: {
+            Nome_usu,
+            Email_usu
+        }
+    })
+    return usuario;
+}

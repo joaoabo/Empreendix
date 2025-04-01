@@ -2,7 +2,7 @@ import { MailtrapClient } from "mailtrap"
 
 export const enviarEmail = async (to: string, subject: string, body: string) => {
     const mailtrap = new MailtrapClient({
-        token: process.env.mIALTRAP_TOKEN as string,
+        token: process.env.MAILTRAP_TOKEN as string,
         testInboxId: 3569399
     });
 
