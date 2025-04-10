@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { usuarioLoginSchema } from "../schemas/usuario-login";
 import { cadastrarUsuario, pegaUsuarioByEmail } from "../services/usuario";
 import { gerarOTP, validarOTP } from "../services/otp";
-import { enviarEmail } from "../libs/mailtrap";
+import { enviarEmail } from "../libs/nodemailer";
 import { cadastrarUsuarioSchema } from "../schemas/cadastrar-usuario";
 import { usuarioUseOTPSchema } from "../schemas/usuario-useotp";
 import { criarJWT } from "../libs/jwt";
@@ -56,7 +56,7 @@ export const usarOPT: RequestHandler = async (req, res) => {
 
      const usuarioId = await validarOTP(data.data.Id_otp, data.data.Codigo_otp);
      if (!usuarioId) {
-         res.json({ error: 'Código inválido ou expirado' });
+         res.json({ error: 'Código inválido ou expirado aqui' });
          return;
      }
      

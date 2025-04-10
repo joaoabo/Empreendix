@@ -7,6 +7,13 @@ export const pegaUsuarioByEmail = async (Email_usu: string) => {
     return usuario;
 }
 
+export const pegaUsuarioById = async (Id_Usu: number) => {
+    const usuario = await db.usuario.findFirst({
+        where: { Id_Usu }
+    })
+    return usuario;
+}
+
 export const cadastrarUsuario = async (Nome_usu: string, Email_usu: string) => {
     const usuario = await db.usuario.create({
         data: {

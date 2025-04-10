@@ -24,3 +24,29 @@ model Otp {
 
   Usuario Usuario @relation(fields: [UsuarioId], references: [Id_Usu])
 }
+
+model Grupo{
+  Grupo_Id Int @id @default(autoincrement())
+  Nome_gru String
+  Descricao_gru String
+  Data_criacao DateTime @default(now())
+  Data_atualizacao DateTime @updatedAt
+  Status_gru Boolean @default(true)
+
+  Produtos Produto[]
+}
+model Produto{
+  Produto_Id Int @id @default(autoincrement())
+  Nome_pro String
+  Descricao_pro String
+  Preco_pro Float
+  Quantidade_pro Int
+  Categoria_pro String
+  Imagem_pro String
+  Data_criacao DateTime @default(now())
+  Data_atualizacao DateTime @updatedAt
+  Status_pro Boolean @default(true)
+  GrupoId Int
+
+  Grupo Grupo @relation(fields: [GrupoId], references: [Grupo_Id])
+}

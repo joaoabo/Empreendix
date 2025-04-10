@@ -9,7 +9,8 @@ export const gerarOTP = async (UsuarioId: number) => {
 
     let Codigo_otp = otpArray.join('');
     let DataExpiracaoCodigo = new Date();
-    DataExpiracaoCodigo.setMinutes(DataExpiracaoCodigo.getMinutes() + 15);
+    DataExpiracaoCodigo.setHours(DataExpiracaoCodigo.getMinutes() + 24); // 24 horas para melhorar os testes
+    // DataExpiracaoCodigo.setHours(DataExpiracaoCodigo.getHours() + 1); // 1 hora para produção
 
     const otp = await db.otp.create({
         data: {
