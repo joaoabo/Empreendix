@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { usuarioLoginSchema } from "../schemas/usuario-login";
-import { cadastrarUsuario, pegaUsuarioByEmail } from "../services/usuario";
-import { gerarOTP, validarOTP } from "../services/otp";
+import { cadastrarUsuario, pegaUsuarioByEmail } from "../services/usuario/usuario";
+import { gerarOTP, validarOTP } from "../services/otp/otp";
 import { enviarEmail } from "../libs/nodemailer";
 import { cadastrarUsuarioSchema } from "../schemas/cadastrar-usuario";
 import { usuarioUseOTPSchema } from "../schemas/usuario-useotp";

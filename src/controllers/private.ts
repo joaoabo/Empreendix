@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { ExtendedRequest } from "../types/extended-request";
-import { pegaUsuarioById } from "../services/usuario";
+import { pegaUsuarioById } from "../services/usuario/usuario";
 
 
 export const privateRoute = async (req: ExtendedRequest, res: Response) => {
