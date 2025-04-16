@@ -1,20 +1,76 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# 🚀 Empreendix
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+**Empreendix** é uma API RESTful desenvolvida com foco em estudos de backend moderno utilizando tecnologias como **Node.js**, **Express**, **Prisma**, **Zod** e autenticação com **JWT**. O projeto tem como objetivo proporcionar uma base sólida e escalável para aplicações web, ao mesmo tempo que serve como laboratório de aprendizado contínuo.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+---
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## 📚 Sobre o Projeto
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Este projeto é um **estudo prático**, criado para explorar boas práticas de desenvolvimento backend, como:
+
+- Arquitetura organizada em camadas (routes, controllers, services, etc)
+- Validação de dados com Zod
+- ORM com Prisma e banco de dados **SQL Server**
+- Autenticação segura usando JWT
+- Padrões RESTful
+
+Apesar de ser voltado para estudos, o Empreendix foi desenvolvido com cuidado para manter um código limpo e legível.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [Prisma ORM](https://www.prisma.io/)
+- [Zod](https://zod.dev/)
+- [JWT (jsonwebtoken)](https://jwt.io/)
+- [Microsoft SQL Server](https://www.microsoft.com/sql-server)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+
+---
+
+## 🔧 Instalação e Execução
+
+Clone o repositório e instale as dependências:
+
+```bash
+npm install
+
+Depois, rode o projeto em modo desenvolvimento:
+
+```bash
+npm run dev
+```
+Certifique-se de configurar o arquivo .env com base no .env.example.
+
+## 📁 Estrutura do Projeto
+empreendix/
+├── prisma/
+│   └── schema.prisma
+├── src/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── routes/
+│   ├── schemas/
+│   ├── services/
+│   └── server.ts
+├── .env.example
+├── package.json
+└── README.md
+
+## 🤝 Contribuição
+
+Este é um projeto **open source** e qualquer contribuição é bem-vinda!
+
+Se quiser contribuir:
+
+1. Faça um fork do projeto
+2. Crie uma branch: `git checkout -b feature/sua-feature`
+3. Commit suas alterações: `git commit -m 'feat: adiciona nova feature'`
+4. Push na sua branch: `git push origin feature/sua-feature`
+5. Abra um Pull Request
+
+## 🧑‍💻 Autor
+
+Desenvolvido por [João Abo](https://github.com/joaoabo) com 💙, dedicação e muito café ☕.
