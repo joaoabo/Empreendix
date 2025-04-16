@@ -1,16 +1,14 @@
 import { Router } from 'express';
-import * as pingController from '../controllers/ping';
-import * as usuarioController from '../controllers/usuario';
-import * as produtoController from '../controllers/produto';
-import * as homeController from '../controllers/home';
+import * as usuarioController from '../controllers/usuario/usuario';
+import * as produtoController from '../controllers/produto/produto';
+import * as homeController from '../controllers/home/home';
+import * as grupoController from '../controllers/grupo/grupo';
 import * as privateController from '../controllers/private';
 import { verificarJWT } from '../libs/jwt';
-import { tryCatch } from '../utils/tryCatch';
 
 export const mainRouter = Router();
 
 // Rotas públicas
-mainRouter.get('/ping', pingController.ping);
 mainRouter.post('/usuario/signin', usuarioController.signin);
 mainRouter.post('/usuario/signup', usuarioController.signup);
 mainRouter.post('/usuario/usarotp', usuarioController.usarOPT);
@@ -20,6 +18,9 @@ mainRouter.get('/produtos', produtoController.listar);
 mainRouter.post('/produto/cadastrar', produtoController.cadastrar);
 mainRouter.put('/produto/alterar', produtoController.alterar);
 mainRouter.delete('/produto/deletar', produtoController.deletar);
+
+//Rotas de grupo
+mainRouter.post('/grupo/cadastrar', grupoController.cadastrar);
 
 
 
