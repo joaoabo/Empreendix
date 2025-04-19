@@ -13,20 +13,18 @@ mainRouter.post('/usuario/signin', usuarioController.signin);
 mainRouter.post('/usuario/signup', usuarioController.signup);
 mainRouter.post('/usuario/usarotp', usuarioController.usarOPT);
 
+// Rotas protegidas (com JWT)
+mainRouter.get('/private', verificarJWT, privateController.privateRoute);
+mainRouter.get('/home', verificarJWT, homeController.home);
+
 //Rotas de produtos
-mainRouter.get('/produtos', produtoController.listar);
-mainRouter.post('/produto/cadastrar', produtoController.cadastrar);
-mainRouter.put('/produto/alterar', produtoController.alterar);
-mainRouter.delete('/produto/deletar', produtoController.deletar);
+mainRouter.get('/produtos', verificarJWT, produtoController.listar);
+mainRouter.post('/produto/cadastrar', verificarJWT, produtoController.cadastrar);
+mainRouter.put('/produto/alterar', verificarJWT, produtoController.alterar);
+mainRouter.delete('/produto/deletar', verificarJWT, produtoController.deletar);
 
 //Rotas de grupo
-mainRouter.get('/grupos', grupoController.listar);
-mainRouter.post('/grupo/cadastrar', grupoController.cadastrar);
-mainRouter.put('/grupo/alterar', grupoController.alterar);
-mainRouter.delete('/grupo/deletar', grupoController.deletar);
-
-
-
-// Rotas protegidas (com JWT)
-mainRouter.get('/home', verificarJWT, homeController.home);
-mainRouter.get('/private', verificarJWT, privateController.privateRoute);
+mainRouter.get('/grupos', verificarJWT, grupoController.listar);
+mainRouter.post('/grupo/cadastrar', verificarJWT, grupoController.cadastrar);
+mainRouter.put('/grupo/alterar', verificarJWT, grupoController.alterar);
+mainRouter.delete('/grupo/deletar', verificarJWT, grupoController.deletar);

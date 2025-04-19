@@ -37,6 +37,9 @@ Clone o repositório e instale as dependências:
 ```bash
 npm install
 
+npx prisma generate
+
+```
 Depois, rode o projeto em modo desenvolvimento:
 
 ```bash
