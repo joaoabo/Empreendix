@@ -50,3 +50,21 @@ model Produto{
 
   Grupo Grupo? @relation(fields: [GrupoId], references: [Grupo_Id])
 }
+
+model Cliente {
+  Cliente_Id        Int      @id @default(autoincrement())
+  Nome_cli          String
+  Documento_cli     String?   // Pode ser CPF ou CNPJ
+  Telefone_cli      String?
+  Email_cli         String?
+  Endereco_cli      String?
+  Tipo_cli          String?   // "Física" ou "Jurídica"
+  Observacao_cli    String?
+  Data_criacao      DateTime  @default(now())
+  Data_atualizacao  DateTime  @updatedAt
+  Status_cli        Boolean   @default(true)
+
+  // Exemplo de relacionamento futuro:
+  // Orcamentos       Orcamento[]
+  // PedidosVenda     PedidoVenda[]
+}

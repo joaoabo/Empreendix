@@ -20,8 +20,10 @@ mainRouter.put('/produto/alterar', produtoController.alterar);
 mainRouter.delete('/produto/deletar', produtoController.deletar);
 
 //Rotas de grupo
+mainRouter.get('/grupos', grupoController.listar);
 mainRouter.post('/grupo/cadastrar', grupoController.cadastrar);
 mainRouter.put('/grupo/alterar', grupoController.alterar);
+mainRouter.delete('/grupo/deletar', grupoController.deletar);
 
 
 
