@@ -34,3 +34,4 @@ mainRouter.delete('/grupo/deletar', verificarJWT, grupoController.deletar);
 
 //Rotas de Clientes
 mainRouter.post('/cliente/cadastrar', clienteController.cadastrar);
+mainRouter.put('/cliente/alterar', clienteController.alterar);
