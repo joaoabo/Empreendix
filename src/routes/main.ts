@@ -1,10 +1,13 @@
 import { Router } from 'express';
+import { verificarJWT } from '../libs/jwt';
+
+import * as privateController from '../controllers/private';
+
 import * as usuarioController from '../controllers/usuario/usuario';
 import * as produtoController from '../controllers/produto/produto';
 import * as homeController from '../controllers/home/home';
 import * as grupoController from '../controllers/grupo/grupo';
-import * as privateController from '../controllers/private';
-import { verificarJWT } from '../libs/jwt';
+import * as clienteController from '../controllers/cliente/cliente';
 
 export const mainRouter = Router();
 
@@ -28,3 +31,6 @@ mainRouter.get('/grupos', verificarJWT, grupoController.listar);
 mainRouter.post('/grupo/cadastrar', verificarJWT, grupoController.cadastrar);
 mainRouter.put('/grupo/alterar', verificarJWT, grupoController.alterar);
 mainRouter.delete('/grupo/deletar', verificarJWT, grupoController.deletar);
+
+//Rotas de Clientes
+mainRouter.post('/cliente/cadastrar', clienteController.cadastrar);
