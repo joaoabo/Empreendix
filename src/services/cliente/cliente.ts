@@ -1,4 +1,5 @@
 import { db } from '../../libs/prisma';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export const cadastrarCliente = async (clienteData: any) => {
     const cliente = await db.cliente.create({
@@ -19,8 +20,15 @@ export const alterarCliente = async (Cliente_Id: number, campos: any) => {
 }
 
 export const deletarCliente = async (Cliente_Id: number) => {
-    const cliente = await db.cliente.delete({
+    try {
+      const cliente = await db.cliente.delete({
         where: { Cliente_Id },
-    })
-    return cliente;
-}
+      });
+      return cliente;
+    } catch (err) {
+      if (err instanceof PrismaClientKnownRequestError && err.code === 'P2025') {
+        return null;
+      }
+      throw err;
+    }
+  };
