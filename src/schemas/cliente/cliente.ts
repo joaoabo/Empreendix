@@ -20,3 +20,7 @@ export const alterarClienteSchema = z.object({
     Tipo_cli: z.enum(['Física', 'Jurídica']).optional().optional().nullable(),
     Observacao_cli: z.string().optional().optional().nullable(),
 });
+
+export const deletarClienteSchema = z.object({
+    Cliente_Id: z.number({message: 'Cliente não encontrado'}),
+});

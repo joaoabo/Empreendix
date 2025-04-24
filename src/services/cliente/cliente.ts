@@ -17,3 +17,10 @@ export const alterarCliente = async (Cliente_Id: number, campos: any) => {
     })
     return cliente;
 }
+
+export const deletarCliente = async (Cliente_Id: number) => {
+    const cliente = await db.cliente.delete({
+        where: { Cliente_Id },
+    })
+    return cliente;
+}
