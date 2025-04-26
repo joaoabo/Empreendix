@@ -2,8 +2,10 @@ import express, { Request, Response, NextFunction } from "express";
 import 'dotenv/config';
 import cors from 'cors';
 import helmet from "helmet";
-import { mainRouter } from "./routes/main";
+
+import { mainRouter, privateRouter } from "./routes/main";
 import { errorHandler } from './middlewares/errorHandler';
+import { verificarJWT } from "./middlewares/authMiddleware";
 
 const server = express();
 
@@ -13,7 +15,12 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.disable('x-powered-by');
 
-server.use(mainRouter);
+// Rotas públicas
+server.use('/api', mainRouter);
+
+// Rotas privadas
+server.use('/api', verificarJWT, privateRouter);
+
 
 server.use(errorHandler as (err: any, req: Request, res: Response, next: NextFunction) => void);
 

@@ -1,8 +1,6 @@
 import { Router } from 'express';
-import { verificarJWT } from '../libs/jwt';
 
 import * as privateController from '../controllers/private';
-
 import * as usuarioController from '../controllers/usuario/usuario';
 import * as produtoController from '../controllers/produto/produto';
 import * as homeController from '../controllers/home/home';
@@ -10,30 +8,30 @@ import * as grupoController from '../controllers/grupo/grupo';
 import * as clienteController from '../controllers/cliente/cliente';
 
 export const mainRouter = Router();
+export const privateRouter = Router();
 
-// Rotas públicas
 mainRouter.post('/usuario/signin', usuarioController.signin);
 mainRouter.post('/usuario/signup', usuarioController.signup);
 mainRouter.post('/usuario/usarotp', usuarioController.usarOPT);
+mainRouter.get('/homePublica', homeController.homePublica);
 
-// Rotas protegidas (com JWT)
-mainRouter.get('/private', verificarJWT, privateController.privateRoute);
-mainRouter.get('/home', verificarJWT, homeController.home);
 
-//Rotas de produtos
-mainRouter.get('/produtos', verificarJWT, produtoController.listar);
-mainRouter.post('/produto/cadastrar', verificarJWT, produtoController.cadastrar);
-mainRouter.put('/produto/alterar', verificarJWT, produtoController.alterar);
-mainRouter.delete('/produto/deletar', verificarJWT, produtoController.deletar);
+privateRouter.get('/private', privateController.privateRoute);
 
-//Rotas de grupo
-mainRouter.get('/grupos', verificarJWT, grupoController.listar);
-mainRouter.post('/grupo/cadastrar', verificarJWT, grupoController.cadastrar);
-mainRouter.put('/grupo/alterar', verificarJWT, grupoController.alterar);
-mainRouter.delete('/grupo/deletar', verificarJWT, grupoController.deletar);
+// Rotas de produtos
+privateRouter.get('/produtos', produtoController.listar);
+privateRouter.post('/produto/cadastrar', produtoController.cadastrar);
+privateRouter.put('/produto/alterar', produtoController.alterar);
+privateRouter.delete('/produto/deletar', produtoController.deletar);
 
-//Rotas de Clientes
-mainRouter.get('/clientes', clienteController.listar);
-mainRouter.post('/cliente/cadastrar', clienteController.cadastrar);
-mainRouter.put('/cliente/alterar', clienteController.alterar);
-mainRouter.delete('/cliente/deletar', clienteController.deletar);
+// Rotas de grupos
+privateRouter.get('/grupos', grupoController.listar);
+privateRouter.post('/grupo/cadastrar', grupoController.cadastrar);
+privateRouter.put('/grupo/alterar', grupoController.alterar);
+privateRouter.delete('/grupo/deletar', grupoController.deletar);
+
+// Rotas de clientes
+privateRouter.get('/clientes', clienteController.listar);
+privateRouter.post('/cliente/cadastrar', clienteController.cadastrar);
+privateRouter.put('/cliente/alterar', clienteController.alterar);
+privateRouter.delete('/cliente/deletar', clienteController.deletar);
