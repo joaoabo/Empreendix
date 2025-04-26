@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
+export const listarClienteSchema = z.object({
+  page: z.coerce.number().optional(), // coerce = transforma string em número
+  limit: z.coerce.number().optional(),
+  search: z.string().optional(),
+});
+
 export const cadastrarClienteSchema = z.object({
     Nome_cli: z.string().min(4, { message: 'Nome é obrigatório' }),
     Telefone_cli: z.string().min(10, { message: 'Telefone deve ter pelo menos 10 dígitos' }),

@@ -1,6 +1,25 @@
 import { db } from "../../libs/prisma";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
+export const listarClientes = async ( page: number, limit: number, search: string ) => {
+  try {
+    return await db.cliente.findMany({
+      where: {
+        Nome_cli: {
+          contains: search,
+        },
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+  } catch (err) {
+    if(err instanceof PrismaClientKnownRequestError && err.code === "P2025") {
+      return null;
+  }
+  throw err;
+  }
+};
+
 export const cadastrarCliente = async (clienteData: any) => {
   try {
     return await db.cliente.create({

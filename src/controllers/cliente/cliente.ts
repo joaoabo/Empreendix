@@ -2,9 +2,23 @@ import { RequestHandler } from 'express';
 import { tryCatch } from '../../utils/tryCatch';
 import { notFoundMsg, deleteSuccessMsg } from '../../utils/errorsMensagens'; // Ajuste o caminho se necessário
 
-import { alterarCliente, cadastrarCliente, deletarCliente } from '../../services/cliente/cliente';
-import { alterarClienteSchema, cadastrarClienteSchema, deletarClienteSchema } from '../../schemas/cliente/cliente';
+import { alterarCliente, cadastrarCliente, deletarCliente, listarClientes } from '../../services/cliente/cliente';
+import { alterarClienteSchema, cadastrarClienteSchema, deletarClienteSchema, listarClienteSchema } from '../../schemas/cliente/cliente';
 
+export const listar: RequestHandler = tryCatch(async (req, res) => {
+    const parseResult = listarClienteSchema.safeParse(req.query);
+
+    if (!parseResult.success) {
+        res.status(400).json({ error: parseResult.error.format() });
+        return;
+    }
+
+    const { page = 1, limit = 10, search = '' } = parseResult.data;
+
+    const clientes = await listarClientes(Number(page), Number(limit), String(search));
+
+    res.status(200).json({ status: 'success', data: clientes });
+});
 
 export const cadastrar: RequestHandler = tryCatch(async (req, res) => {
     const data = cadastrarClienteSchema.safeParse(req.body);
@@ -61,7 +75,3 @@ export const deletar : RequestHandler = tryCatch(async (req, res) => {
     res.status(200).json({ cliente: clienteDeletado.Cliente_Id, message: deleteSuccessMsg(clienteDeletado.Nome_cli)  });
     return;
 });
-
-  
-
-  
