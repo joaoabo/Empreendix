@@ -1,24 +1,37 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { db } from "../../libs/prisma";
 
 export const cadastrarProduto = async (Nome_pro: string, Preco_pro: number) => {
-    const produto = await db.produto.create({
-       data: {
-              Nome_pro,
-              Preco_pro
-       }
-    })
-    return produto;
+    try {
+        return await db.produto.create({
+            data: {
+                Nome_pro,
+                Preco_pro,
+            },
+        });
+    } catch (error) {
+        if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
+            return null;
+        }
+        throw error;
+    }
 }
 
 export const alterarProduto = async (Produto_Id: number, campos: any) => {
-    const produto = await db.produto.update({
-        where: { Produto_Id },
-        data: {
-            ...campos,
-            Data_atualizacao: new Date()
-        },
-    });
-    return produto;
+    try {
+        return await db.produto.update({
+            where: { Produto_Id },
+            data: {
+                ...campos,
+                Data_atualizacao: new Date(),
+            },
+        });
+    } catch (err) {
+        if (err instanceof PrismaClientKnownRequestError && err.code === "P2025") {
+            return null;
+        }
+        throw err;
+    }
 }
 
 export const listarProdutos = async (
@@ -26,19 +39,30 @@ export const listarProdutos = async (
     limit: number = 10,
     orderBy: "asc" | "desc" = "asc"
   ) => {
-    const produtos = await db.produto.findMany({
-      orderBy: { Produto_Id: orderBy },
-      skip: (page - 1) * limit,
-      take: limit,
-    });
-  
-    return produtos;
+    try {
+      return await db.produto.findMany({
+        orderBy: { Produto_Id: orderBy },
+        skip: (page - 1) * limit,
+        take: limit,
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError && error.code === "P2025") {
+        return null;
+      }
+      throw error;
+    }
   };
 
   export const deletarProduto = async (Produto_Id: number) => {
-    const produto = await db.produto.delete({
-      where: { Produto_Id }
-    });
-    return produto;
+    try {
+        return await db.produto.delete({
+            where: { Produto_Id },
+        });
+    } catch (err) {
+        if (err instanceof PrismaClientKnownRequestError && err.code === "P2025") {
+            return null;
+        }
+        throw err;
+    }
   };
   

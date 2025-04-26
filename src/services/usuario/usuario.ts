@@ -1,25 +1,46 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { db } from "../../libs/prisma";
 
 export const pegaUsuarioByEmail = async (Email_usu: string) => {
-    const usuario = await db.usuario.findFirst({
-        where: { Email_usu }
-    })
-    return usuario;
+    try {
+        return await db.usuario.findFirst({
+            where: { Email_usu }
+        })
+    } catch (error) {
+        if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
+            return null;
+        }
+        throw error;
+    }
 }
 
 export const pegaUsuarioById = async (Id_Usu: number) => {
-    const usuario = await db.usuario.findFirst({
-        where: { Id_Usu }
-    })
-    return usuario;
+    try {
+        return await db.usuario.findFirst({
+            where: { Id_Usu }
+        })
+    } catch (error) {
+        if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
+            return null;
+        }
+        throw error;
+        
+    }
 }
 
 export const cadastrarUsuario = async (Nome_usu: string, Email_usu: string) => {
-    const usuario = await db.usuario.create({
-        data: {
-            Nome_usu,
-            Email_usu
+    try {
+        return await db.usuario.create({
+            data: {
+                Nome_usu,
+                Email_usu
+            }
+        })
+    } catch (error) {
+        if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
+            return null;
         }
-    })
-    return usuario;
+        throw error;
+        
+    }
 }
