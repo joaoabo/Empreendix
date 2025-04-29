@@ -23,7 +23,6 @@ export const gerarOTP = async (UsuarioId: number) => {
         })
         return otp;
     } catch (err) {
-        console.error('Erro ao gerar OTP:', err);
         throw new Error('Erro ao gerar OTP. Tente novamente.');
     }
 }
@@ -52,7 +51,6 @@ export const validarOTP = async (Id_otp: string, Codigo_otp: string) => {
 
         return false;
     } catch (err) {
-        console.error('Erro ao validar OTP:', err);
         throw new Error('Erro ao validar OTP. Tente novamente.');
     }
 }

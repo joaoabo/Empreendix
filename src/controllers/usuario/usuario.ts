@@ -14,14 +14,12 @@ export const signup: RequestHandler = async (req, res) => {
         res.json({ error: data.error.flatten().fieldErrors });
         return;
      }
-     console.log('Email recebido para cadastro:', data.data.Email_usu);
     const usuario = await pegaUsuarioByEmail(data.data.Email_usu);
     if(usuario){
         res.json({ error: 'Email já cadastrado' });
         return;
     }
     const novoUsuario = await cadastrarUsuario(data.data.Nome_usu, data.data.Email_usu);
-    console.log('Novo usuário cadastrado:', novoUsuario);
 
     res.status(201).json({ usuario: novoUsuario });
     return;
@@ -34,9 +32,7 @@ export const signin: RequestHandler = tryCatch(async (req, res) => {
        return;
    }
 
-   console.log('Email recebido para login:', data.data.Email_usu);
    const usuario = await pegaUsuarioByEmail(data.data.Email_usu);
-   console.log(usuario);
    if(!usuario){
        res.json({ error: 'Usuario não encontrado' });
        return;

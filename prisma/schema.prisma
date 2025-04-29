@@ -12,7 +12,8 @@ model Usuario {
   Nome_usu  String
   Email_usu String @unique
 
-  Otps Otp[]
+  Otps      Otp[]
+  orcamento Orcamento[]
 }
 
 model Otp {
@@ -25,46 +26,69 @@ model Otp {
   Usuario Usuario @relation(fields: [UsuarioId], references: [Id_Usu])
 }
 
-model Grupo{
-  Grupo_Id Int @id @default(autoincrement())
-  Nome_gru String
-  Descricao_gru String
-  Data_criacao DateTime @default(now())
+model Grupo {
+  Grupo_Id         Int      @id @default(autoincrement())
+  Nome_gru         String
+  Descricao_gru    String
+  Data_criacao     DateTime @default(now())
   Data_atualizacao DateTime @updatedAt
-  Status_gru Boolean @default(true)
+  Status_gru       Boolean  @default(true)
 
   Produtos Produto[]
 }
-model Produto{
-  Produto_Id Int @id @default(autoincrement())
-  Nome_pro String
-  Descricao_pro String?
-  Preco_pro Float
-  Quantidade_pro Int?
-  Categoria_pro String?
-  Imagem_pro String?
-  Data_criacao DateTime @default(now())
+
+model Produto {
+  Produto_Id       Int      @id @default(autoincrement())
+  Nome_pro         String
+  Descricao_pro    String?
+  Preco_pro        Float
+  Quantidade_pro   Int?
+  Categoria_pro    String?
+  Imagem_pro       String?
+  Data_criacao     DateTime @default(now())
   Data_atualizacao DateTime @updatedAt
-  Status_pro Boolean @default(true)
-  GrupoId Int?
+  Status_pro       Boolean  @default(true)
+  GrupoId          Int?
 
   Grupo Grupo? @relation(fields: [GrupoId], references: [Grupo_Id])
 }
 
 model Cliente {
-  Cliente_Id        Int      @id @default(autoincrement())
-  Nome_cli          String
-  Documento_cli     String?   // Pode ser CPF ou CNPJ
-  Telefone_cli      String?
-  Email_cli         String?
-  Endereco_cli      String?
-  Tipo_cli          String?   // "Física" ou "Jurídica"
-  Observacao_cli    String?
-  Data_criacao      DateTime  @default(now())
-  Data_atualizacao  DateTime  @updatedAt
-  Status_cli        Boolean   @default(true)
+  Cliente_Id       Int      @id @default(autoincrement())
+  Nome_cli         String
+  Documento_cli    String?
+  Telefone_cli     String?
+  Email_cli        String?
+  Endereco_cli     String?
+  Tipo_cli         String?
+  Observacao_cli   String?
+  Data_criacao     DateTime @default(now())
+  Data_atualizacao DateTime @updatedAt
+  Status_cli       Boolean  @default(true)
 
-  // Exemplo de relacionamento futuro:
-  // Orcamentos       Orcamento[]
+  Orcamentos Orcamento[]
   // PedidosVenda     PedidoVenda[]
+}
+
+model Orcamento {
+  Id_Orcamento String   @id @default(uuid())
+  ClienteId    Int
+  UsuarioId    Int
+  CriadoEm     DateTime @default(now())
+  AtualizadoEm DateTime @updatedAt
+
+  Cliente Cliente         @relation(fields: [ClienteId], references: [Cliente_Id])
+  Usuario Usuario         @relation(fields: [UsuarioId], references: [Id_Usu])
+  Itens   OrcamentoItem[]
+}
+
+model OrcamentoItem {
+  Id_OrcaItens  String @id @default(uuid())
+  OrcamentoId   String
+  Produto       String
+  Quantidade    Int
+  PrecoUnitario Float
+  Subtotal      Float
+
+  Orcamento Orcamento @relation(fields: [OrcamentoId], references: [Id_Orcamento])
 }

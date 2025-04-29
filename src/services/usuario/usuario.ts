@@ -10,7 +10,6 @@ export const pegaUsuarioByEmail = async (Email_usu: string) => {
             where: { Email_usu: normalizedEmail }
         });
         
-        console.log('Email recebido para login na fonte:', usuario); // Agora você vai ver o resultado
         return usuario;
     } catch (error) {
         if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
