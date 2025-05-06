@@ -12,7 +12,7 @@ export const gerarOTP = async (UsuarioId: number) => {
         let DataExpiracaoCodigo = new Date();
         DataExpiracaoCodigo.setHours(DataExpiracaoCodigo.getFullYear() + 24); // Apenas para teste
         // DataExpiracaoCodigo.setHours(DataExpiracaoCodigo.getHours() + 1); // 1 hora para produção
-
+        
         const otp = await db.otp.create({
             data: {
                 Id_otp: uuidv4(),

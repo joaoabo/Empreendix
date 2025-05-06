@@ -40,3 +40,4 @@ privateRouter.delete('/cliente/deletar', clienteController.deletar);
 
 // Rotas de orcamento
 privateRouter.post('/orcamento/criar', orcamentoController.criarOrcamento);
+privateRouter.put('/orcamento/alterar', orcamentoController.alterarOrcamento);

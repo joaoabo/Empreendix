@@ -71,7 +71,7 @@ model Cliente {
 }
 
 model Orcamento {
-  Id_Orcamento String   @id @default(uuid())
+  Id_Orcamento Int   @id @default(autoincrement())
   ClienteId    Int
   UsuarioId    Int
   CriadoEm     DateTime @default(now())
@@ -83,8 +83,8 @@ model Orcamento {
 }
 
 model OrcamentoItem {
-  Id_OrcaItens  String @id @default(uuid())
-  OrcamentoId   String
+  Id_OrcaItens  Int @id @default(autoincrement())
+  OrcamentoId   Int
   Produto       String
   Quantidade    Int
   PrecoUnitario Float
