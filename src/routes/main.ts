@@ -7,6 +7,7 @@ import * as homeController from '../controllers/home/home';
 import * as grupoController from '../controllers/grupo/grupo';
 import * as clienteController from '../controllers/cliente/cliente';
 import * as orcamentoController from '../controllers/orcamento/orcamento';
+import * as orcamentoItensController from '../controllers/orcamento/orcamentoItens';
 
 
 export const mainRouter = Router();
@@ -42,3 +43,6 @@ privateRouter.delete('/cliente/deletar', clienteController.deletar);
 privateRouter.post('/orcamento/criar', orcamentoController.criarOrcamento);
 privateRouter.put('/orcamento/alterar', orcamentoController.alterarOrcamento);
 privateRouter.delete('/orcamento/deletar', orcamentoController.deletarOrcamento);
+
+// Rotas de orcamentoItens
+privateRouter.post('/orcamentoItens/criar', orcamentoItensController.criarOrcaItens);
