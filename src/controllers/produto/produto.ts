@@ -1,10 +1,11 @@
 import { RequestHandler } from "express";
 import {
+  buscarProdutoInteligenteSchema,
   cadastrarProdutoSchema,
   editarProdutoSchema,
   listarProdutosSchema,
 } from "../../schemas/produto/cadastrar-produto";
-import { alterarProduto, cadastrarProduto, deletarProduto, listarProdutos } from "../../services/produto/produto";
+import { alterarProduto, buscaProdutosInteligente, cadastrarProduto, deletarProduto, listarProdutos } from "../../services/produto/produto";
 import { tryCatch } from "../../utils/tryCatch";
 
 export const cadastrar: RequestHandler = tryCatch(async (req, res) => {
@@ -37,8 +38,20 @@ export const alterar: RequestHandler = tryCatch(async (req, res) => {
   const produtoAlterado = await alterarProduto(Produto_Id, camposAtualizado);
   res.status(200).json({ produto: produtoAlterado });
 });
-
-export const listar: RequestHandler = async (req, res) => {
+  
+  export const deletar: RequestHandler = tryCatch(async (req, res) => {
+    const { Produto_Id } = req.body;
+  
+    if (!Produto_Id || isNaN(Produto_Id)) {
+        res.status(400).json({ error: 'ID inválido' });
+        return;
+      }
+  
+    await deletarProduto(Produto_Id);
+    res.status(200).json({ message: 'Produto deletado com sucesso' });
+  });
+  
+  export const listar: RequestHandler = tryCatch(async (req, res) => {
     const query = listarProdutosSchema.safeParse(req.query);
     if (!query.success) {
       res.status(400).json({ error: query.error.flatten().fieldErrors });
@@ -54,17 +67,20 @@ export const listar: RequestHandler = async (req, res) => {
     }
   
     res.status(200).json({ resultado, message: "Produtos encontrados" });
-  };
-  
-  export const deletar: RequestHandler = tryCatch(async (req, res) => {
-    const { Produto_Id } = req.body;
-  
-    if (!Produto_Id || isNaN(Produto_Id)) {
-        res.status(400).json({ error: 'ID inválido' });
-        return;
-      }
-  
-    await deletarProduto(Produto_Id);
-    res.status(200).json({ message: 'Produto deletado com sucesso' });
   });
-  
+
+  export const buscaInteligente: RequestHandler = tryCatch(async (req, res) => {
+     const parsed = buscarProdutoInteligenteSchema.safeParse(req.query);
+
+     if (!parsed.success) {
+       res.status(400).json({ error: parsed.error.errors });
+       return;
+     }
+ 
+     const { nome } = parsed.data;
+ 
+     const produtos = await buscaProdutosInteligente(nome);
+ 
+     res.json(produtos);
+     return;
+  })

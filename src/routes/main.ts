@@ -23,6 +23,7 @@ privateRouter.get('/private', privateController.privateRoute);
 
 // Rotas de produtos
 privateRouter.get('/produtos', produtoController.listar);
+privateRouter.get('/buscarTodosProdutos', produtoController.buscaInteligente);
 privateRouter.post('/produto/cadastrar', produtoController.cadastrar);
 privateRouter.put('/produto/alterar', produtoController.alterar);
 privateRouter.delete('/produto/deletar', produtoController.deletar);

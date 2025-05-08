@@ -36,3 +36,7 @@ export const listarProdutosSchema = z.object({
 
   orderBy: z.enum(["asc", "desc"]).optional().default("asc"),
 });
+
+export const buscarProdutoInteligenteSchema = z.object({
+  nome: z.string().min(1, { message: "Digite algo para buscar" })
+});

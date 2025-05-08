@@ -34,6 +34,19 @@ export const alterarProduto = async (Produto_Id: number, campos: any) => {
     }
 }
 
+export const deletarProduto = async (Produto_Id: number) => {
+  try {
+      return await db.produto.delete({
+          where: { Produto_Id },
+      });
+  } catch (err) {
+      if (err instanceof PrismaClientKnownRequestError && err.code === "P2025") {
+          return null;
+      }
+      throw err;
+  }
+};
+
 export const listarProdutos = async (
     page: number = 1,
     limit: number = 10,
@@ -53,16 +66,16 @@ export const listarProdutos = async (
     }
   };
 
-  export const deletarProduto = async (Produto_Id: number) => {
-    try {
-        return await db.produto.delete({
-            where: { Produto_Id },
-        });
-    } catch (err) {
-        if (err instanceof PrismaClientKnownRequestError && err.code === "P2025") {
-            return null;
-        }
-        throw err;
-    }
-  };
-  
+export const buscaProdutosInteligente = async(nome: string) => {
+    const produtos = await db.produto.findMany({
+        where: {
+            Nome_pro: {
+            contains: nome,
+            //mode: 'insensitive' // Busca sem diferenciar maiúsculas de minúsculas
+          }
+        },
+        take: 10 // Limita a 10 resultados para não sobrecarregar
+      });
+    
+      return produtos;
+}
