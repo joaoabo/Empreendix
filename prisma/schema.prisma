@@ -51,6 +51,8 @@ model Produto {
   GrupoId          Int?
 
   Grupo Grupo? @relation(fields: [GrupoId], references: [Grupo_Id])
+
+  OrcamentoItem OrcamentoItem[]
 }
 
 model Cliente {
@@ -71,7 +73,7 @@ model Cliente {
 }
 
 model Orcamento {
-  Id_Orcamento Int   @id @default(autoincrement())
+  Id_Orcamento Int      @id @default(autoincrement())
   ClienteId    Int
   UsuarioId    Int
   CriadoEm     DateTime @default(now())
@@ -83,12 +85,15 @@ model Orcamento {
 }
 
 model OrcamentoItem {
-  Id_OrcaItens  Int @id @default(autoincrement())
+  Id_OrcaItens  Int   @id @default(autoincrement())
   OrcamentoId   Int
-  Produto       String
+  ProdutoId     Int
   Quantidade    Int
   PrecoUnitario Float
   Subtotal      Float
 
   Orcamento Orcamento @relation(fields: [OrcamentoId], references: [Id_Orcamento])
+  Produto  Produto   @relation(fields: [ProdutoId], references: [Produto_Id])
+
+  @@map("OrcamentoItem")
 }
