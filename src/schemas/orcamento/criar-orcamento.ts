@@ -12,7 +12,3 @@ export const alterarOrcamentoSchema = z.object({
     ClienteId: z.number().optional().nullable(),
     StatusOrcamento: statusOrcamentoEnum.optional(),
 });
-
-export const deletarOrcamentoSchema = z.object({
-    Id_Orcamento: z.number({ message: "Não foi possível deletar Orcamento!"}),
-});

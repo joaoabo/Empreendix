@@ -35,16 +35,3 @@ export const alterarOrcamentoExistente = async (Id_Orcamento: number, campos: an
     }
 
 }
-
-export const deletarOrcamentoExistente = async (Id_Orcamento: number) => {
-    try {
-        return await db.orcamento.delete({
-            where: { Id_Orcamento},
-        })
-    } catch (err) {
-        if(err instanceof PrismaClientKnownRequestError && err.code === "P2025"){
-            return null;
-        }
-        throw err;
-    }
-}
