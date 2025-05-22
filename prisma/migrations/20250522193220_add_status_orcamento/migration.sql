@@ -1,0 +1,19 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- AlterTable
+ALTER TABLE [dbo].[Orcamento] ADD [StatusOrcamento] NVARCHAR(1000) NOT NULL CONSTRAINT [Orcamento_StatusOrcamento_df] DEFAULT 'aberto';
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH

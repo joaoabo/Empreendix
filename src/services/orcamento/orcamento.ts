@@ -6,7 +6,8 @@ export const criarOrcamentoNovo = async (ClienteId: number, UsuarioId: number) =
         return await db.orcamento.create({
             data: {
                 ClienteId,
-                UsuarioId
+                UsuarioId,
+                StatusOrcamento: "aberto",
             }
         })
     } catch (error) {

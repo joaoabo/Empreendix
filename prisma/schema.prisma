@@ -78,10 +78,13 @@ model Orcamento {
   UsuarioId    Int
   CriadoEm     DateTime @default(now())
   AtualizadoEm DateTime @updatedAt
+  StatusOrcamento       String   @default("aberto")
 
   Cliente Cliente         @relation(fields: [ClienteId], references: [Cliente_Id])
   Usuario Usuario         @relation(fields: [UsuarioId], references: [Id_Usu])
   Itens   OrcamentoItem[]
+
+  @@map("Orcamento")
 }
 
 model OrcamentoItem {
