@@ -15,7 +15,7 @@
     "dev": "node --import=tsx --watch --env-file=.env src/server.ts"
   },
   "dependencies": {
-    "@prisma/client": "^6.5.0",
+    "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -32,7 +32,7 @@
     "@types/node": "^22.13.13",
     "@types/nodemailer": "^6.4.17",
     "@types/uuid": "^10.0.0",
-    "prisma": "^6.5.0",
+    "prisma": "^6.8.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
