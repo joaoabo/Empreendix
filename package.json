@@ -9,11 +9,11 @@
   "license": "ISC",
   "author": "João Antonio b de Oliveira",
   "type": "commonjs",
-  "main": "ts-node src/server.ts",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "node --import=tsx --watch --env-file=.env src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "postinstall": "prisma generate && prisma migrate deploy"
   },
   "dependencies": {
