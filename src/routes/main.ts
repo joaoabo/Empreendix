@@ -13,11 +13,11 @@ import * as orcamentoItensController from '../controllers/orcamento/orcamentoIte
 export const mainRouter = Router();
 export const privateRouter = Router();
 
+mainRouter.get('/homePublica', homeController.homePublica);
+
 mainRouter.post('/usuario/signin', usuarioController.signin);
 mainRouter.post('/usuario/signup', usuarioController.signup);
 mainRouter.post('/usuario/usarotp', usuarioController.usarOPT);
-mainRouter.get('/homePublica', homeController.homePublica);
-
 
 privateRouter.get('/private', privateController.privateRoute);
 

@@ -7,16 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// datasource db {
-//   provider = "sqlserver"
-//   url      = env("DATABASE_URL")
-// }
-
-// datasource db {
-//   provider = "sqlite"
-//   url      = "file:./dev.db"
-// }
-
 model Usuario {
   Id_Usu    Int    @id @default(autoincrement())
   Nome_usu  String

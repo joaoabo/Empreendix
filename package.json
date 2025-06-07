@@ -11,11 +11,11 @@
   "type": "commonjs",
   "main": "ts-node src/server.ts",
   "scripts": {
-  "dev": "node --import=tsx --watch --env-file=.env src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js",
-  "postinstall": "prisma generate && prisma migrate deploy"
-},
+    "dev": "node --import=tsx --watch --env-file=.env src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "postinstall": "prisma generate && prisma migrate deploy"
+  },
   "dependencies": {
     "@prisma/client": "^6.8.2",
     "cors": "^2.8.5",
@@ -24,6 +24,8 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.10.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^11.1.0",
     "zod": "^3.24.2"
   },
@@ -33,6 +35,8 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.13.13",
     "@types/nodemailer": "^6.4.17",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
     "@types/uuid": "^10.0.0",
     "prisma": "^6.8.2",
     "ts-node": "^10.9.2",
