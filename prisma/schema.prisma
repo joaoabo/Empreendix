@@ -2,14 +2,20 @@ generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
 // datasource db {
 //   provider = "sqlserver"
 //   url      = env("DATABASE_URL")
 // }
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
+
+// datasource db {
+//   provider = "sqlite"
+//   url      = "file:./dev.db"
+// }
 
 model Usuario {
   Id_Usu    Int    @id @default(autoincrement())
