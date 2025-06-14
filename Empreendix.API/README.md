@@ -1,4 +1,6 @@
-# 🚀 Empreendix
+# 🚀 Empreendix  
+Swagger - https://empreendix.onrender.com/api-docs
+Postman - https://empreendix.onrender.com
 
 **Empreendix** é uma API RESTful desenvolvida com foco em estudos de backend moderno utilizando tecnologias como **Node.js**, **Express**, **Prisma**, **Zod** e autenticação com **JWT**. O projeto tem como objetivo proporcionar uma base sólida e escalável para aplicações web, ao mesmo tempo que serve como laboratório de aprendizado contínuo.
 
