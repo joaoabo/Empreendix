@@ -4,15 +4,15 @@ import { StyleSheet, View, Text } from 'react-native'
 export default function Empreedix() {
     return (
         <View>
-            <Text style={styles.titulo}>
+            <Text style={styles.tituloHome}>
                 Empreendix
             </Text>
         </View>
     )
 };
 const styles = StyleSheet.create({
-    titulo: {
-        fontSize: 32,
+    tituloHome: {
+        fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#e6b800'
