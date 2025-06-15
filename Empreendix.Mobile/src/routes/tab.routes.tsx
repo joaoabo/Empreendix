@@ -4,12 +4,13 @@ import { Feather } from '@expo/vector-icons'
 import HomeAcesso from '../screens/home/HomeAcesso'
 import Login from '../screens/controleUsuario/Login'
 import Dashboard from '../screens/dashboard/Dashboard';
+import EmpreedixTitulo from '../components/empreendix/EmpreendixTitulo';
 
 const Tab = createBottomTabNavigator();
 
 export default function TabRoutesPublica(){
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerTitle: () => <EmpreedixTitulo />, headerTitleAlign: 'center' }} initialRouteName='Home'>
             <Tab.Screen
             name="Dashboard"
             component={Dashboard}
@@ -30,7 +31,7 @@ export default function TabRoutesPublica(){
             name="Login"
             component={Login}
             options={{
-                tabBarIcon: ({color, size}) => <Feather name='log-in' color={color} size={size}/>
+                tabBarIcon: ({color, size}) => <Feather name='log-in' color={color} size={size}/>,
             }}
             />
         </Tab.Navigator>
