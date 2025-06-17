@@ -1,15 +1,23 @@
+// src/screens/controleUsuario/Login.tsx
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Text, TextInput, Button } from 'react-native-paper';
-import { styles } from './stylesUsuario'
+import { styles } from './stylesUsuario';
 import Logo from '../../components/logo/Logo';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { PublicStackParamList } from '../../routes/types';
 
-export default function Login({ }) {
+type NavigationProp = NativeStackNavigationProp<PublicStackParamList, 'OTPLogin'>;
+
+export default function Login() {
+  const navigation = useNavigation<NavigationProp>();
   const [email, setEmail] = useState('');
-  const [nome , setNome] = useState('');
+  const [nome, setNome] = useState('');
 
   const handleNext = () => {
-    return 'teste'
+    navigation.navigate('OTPLogin', { email });
+    console.log('Erro aqui', navigation)
   };
 
   return (
