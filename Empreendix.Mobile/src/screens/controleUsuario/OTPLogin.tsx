@@ -33,6 +33,7 @@ export default function OTPLogin() {
         if (codigo.length < 6) return alert('Digite os 6 dígitos');
 
         const sucesso = await validarOtp(Id_otp, codigo);
+        console.log("Vendo resultado no arquivo OTPLogin:", sucesso)
 
         if (sucesso) {
             navigation.replace('Home');

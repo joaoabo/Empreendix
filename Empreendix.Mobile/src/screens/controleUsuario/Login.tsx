@@ -7,7 +7,7 @@ import Logo from '../../components/logo/Logo';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { PublicStackParamList } from '../../routes/types';
-import { cadastrarUsuario, gerarOtp } from '../../services/authService';
+import { login } from '../../services/authService';
 
 type NavigationProp = NativeStackNavigationProp<PublicStackParamList, 'OTPLogin'>;
 
@@ -18,14 +18,11 @@ export default function Login() {
 
   const handleNext = async () => {
     try {
-      const cadastro = await cadastrarUsuario(nome, email);
-      if (!cadastro) return alert('Não foi possível cadastrar');
-
-      const { Id_otp } = await gerarOtp(email);
-      navigation.navigate('OTPLogin', { email, Id_otp });
+      const { id } = await login(nome, email);
+      navigation.navigate('OTPLogin', { email, Id_otp: id });
     } catch (error) {
       console.error(error);
-      alert('Algo deu errado no processo de login');
+      alert('Erro ao iniciar o login');
     }
   };
 
