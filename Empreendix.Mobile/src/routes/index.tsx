@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from '../screens/splash/SplashScreen';
+import TabRoutesPrivada from './tab.routes';
 import TabRoutesPublica from './tab.routes';
 import OTPLogin from '../screens/controleUsuario/OTPLogin';
 
@@ -26,7 +27,9 @@ export default function Routes() {
         ) : (
           <>
             <Stack.Screen name="Tabs" component={TabRoutesPublica} />
-            <Stack.Screen name="OTPLogin" component={OTPLogin} /></>
+            <Stack.Screen name="OTPLogin" component={OTPLogin} />
+            <Stack.Screen name="Home" component={TabRoutesPrivada} />
+            </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
