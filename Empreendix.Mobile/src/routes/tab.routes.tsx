@@ -22,7 +22,7 @@ export default function TabRoutesPublica() {
                 name="Login"
                 component={Login}
                 options={{
-                    tabBarIcon: ({ color, size }) => <Feather name='log-in' color={color} size={size} />,
+                    tabBarIcon: ({ color, size }) => <Feather name='log-in' color={color} size={size} />
                 }}
             />
         </Tab.Navigator>

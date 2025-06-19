@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Logo from '../../components/logo/Logo';
 import Empreedix from '../../components/empreendix/Empreendix';
 

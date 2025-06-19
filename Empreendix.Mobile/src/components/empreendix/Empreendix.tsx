@@ -1,12 +1,10 @@
-import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function Empreedix() {
     return (
         <View>
-            <Text style={styles.tituloHome}>
-                Empreendix
-            </Text>
+            <Text style={styles.tituloHome}>Empreendix</Text>
         </View>
     )
 };

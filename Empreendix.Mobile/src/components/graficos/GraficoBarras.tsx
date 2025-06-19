@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Dimensions, ScrollView } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { Dimensions } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 
 export default function GraficosBarras() {
