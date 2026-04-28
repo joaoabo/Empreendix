@@ -10,7 +10,7 @@ Postman - https://empreendix.onrender.com
 
 Este projeto é um **estudo prático**, criado para explorar boas práticas de desenvolvimento backend, como:
 
-- Arquitetura organizada em camadas (routes, controllers, services, etc)
+- Arquitetura organizada em camadas (routes, controllers, services)
 - Validação de dados com Zod
 - ORM com Prisma e banco de dados **SQL Server**
 - Autenticação segura usando JWT
